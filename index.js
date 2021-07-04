@@ -1,5 +1,5 @@
 const clear = require('clear');
-const display_app_logo = require('./public/js/app');
+const display_app_logo = require('./public/js/app_logo');
 
 clear();
 
