@@ -1,0 +1,28 @@
+{
+  "name": "php-database-serve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gicehajunior/php-database-serve.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gicehajunior/php-database-serve/issues"
+  },
+  "homepage": "https://github.com/Gicehajunior/php-database-serve#readme",
+  "dependencies": {
+    "chalk": "^4.1.1",
+    "clear": "^0.1.0",
+    "clui": "^0.3.6",
+    "figlet": "^1.5.0",
+    "inquirer": "^8.1.1",
+    "minimist": "^1.2.5"
+  }
+}
