@@ -2,15 +2,18 @@
   "name": "php-database-serve",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "bin/index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node bin/index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Gicehajunior/php-database-serve.git"
   },
   "keywords": [],
+  "bin": {
+    "database-serve": "bin/index.js"
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
