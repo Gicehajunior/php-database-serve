@@ -9,6 +9,10 @@ module.exports = class Database {
         console.log(this.database_name);
     }
 
+    migrate_database_tables() {
+
+    }
+
     check_database_exists() {
 
     }
@@ -17,11 +21,7 @@ module.exports = class Database {
 
     }
 
-    migrate_database() {
-
-    }
-
-    connection() {
+    database_connection() {
         
     }
 }

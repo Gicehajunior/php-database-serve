@@ -23,14 +23,11 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
  */
-require('dotenv').config();
-const clear = require('clear');
+require('dotenv').config(); 
 const display_app_logo = require('../public/js/app_logo');
 const app_error = require('../public/js/errors');
 const args = require('minimist')(process.argv.slice(2)); 
 const application = require('../public/js/app');
-
-clear();
 
 // Display app logo
 display_app_logo();
