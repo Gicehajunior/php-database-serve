@@ -40,9 +40,14 @@ app_error(process.argv);
  * display error method returns success.
  */ 
 const run_application = () => { 
-    const database_name = process.env.DB_NAME;
+    const database_host = process.env.DB_HOST;
+    const database_name = process.env.DB_NAME; 
+    const database_username = process.env.DB_USERNAME;
+    const database_password = process.env.DB_PASSWORD;
 
-    const app = new application(database_name);
+    const database_tables_path = process.env.DB_TABLES_PATH;
+    
+    const app = new application(database_host, database_name, database_username, database_password, database_tables_path, process.argv.slice(2));
     app.execute_commands();
 }
 
