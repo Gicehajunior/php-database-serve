@@ -26,7 +26,11 @@ module.exports = class Database {
     inquire_user(database_name) {
         let query;
 
-        if (database_name == '' || database_name !== '') { 
+        if (database_name == '') {
+            console.log('Database name seems to be null in your dotenv file');
+            this.read_user_lines();
+        }
+        else if (database_name !== '') { 
             query = { type: 'confirm', name: 'database_name', message: 'Ready to continue with the existing database name?', default: false }
             this.prompt_user(query);
         }
