@@ -23,7 +23,10 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
  */
-require('dotenv').config(); 
+const current_directory = process.cwd();
+const dotenv_filepath = (`${current_directory}/.env`) ? `${current_directory}/.env` : './';
+
+require('dotenv').config({path: dotenv_filepath});
 const display_app_logo = require('../public/js/app_logo');
 const app_error = require('../public/js/errors');
 const args = require('minimist')(process.argv.slice(2)); 
