@@ -16,10 +16,15 @@ module.exports = class Database {
 
     execute_commands() { 
         if (this.args.length > 0) {
-            this.inquire_user(this.database_name);
+            if (!this.args.includes('create') && this.args.includes('push')) {
+                this.migrate_database_tables(); 
+            }
+            else {
+                this.inquire_user(this.database_name);
+            }
         }
         else {
-            console.log('No arguments provided. Please see Help below.');
+            console.log(`No arguments provided. Please see Help, https://github.com/Gicehajunior/php-database-serve.`);
         }
     }
 
@@ -66,7 +71,7 @@ module.exports = class Database {
 
 
     migrate_database_tables() {
-        
+        console.log(`Ready to migrate the database tables. Please wait...`);
     }
 
     check_database_exists() { 
@@ -76,6 +81,9 @@ module.exports = class Database {
     create_database(database) {
         console.log('Ready to create your database. Please wait...'); 
         let connection = this.database_connection(database);
+        let message;
+        let args = this.args;
+        let migrate_database_tables = this.migrate_database_tables;
 
         connection.query(`CREATE DATABASE ${database}`, function (err, result) {
             if (err) { 
@@ -83,7 +91,12 @@ module.exports = class Database {
                 return;
             }
             else {
-                console.log("Database created");
+                message = `Database created`;
+                console.log(`${messages}`); 
+                
+                if (args.includes('push')) { 
+                    migrate_database_tables(); 
+                }
             } 
         }); 
     }
