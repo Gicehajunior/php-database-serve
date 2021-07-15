@@ -3,15 +3,18 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const read_user_line = require('readline');
+const fs = require('fs');
 
 module.exports = class Database {
-    constructor(database_host='', database_name='',  database_username='', database_password='', database_tables_path='', args) {
-        this.database_host = database_host
+    constructor(dotenv_filepath, database_host='', database_name='',  database_username='', database_password='', database_tables_path='', args) {
+        this.dotenv_filepath = dotenv_filepath
+        this.database_host = database_host 
         this.database_name = database_name;
         this.database_username = database_username;
         this.database_password = database_password;
         this.database_tables_path = database_tables_path;
         this.args = args;
+        this.new_database_name = '';
     }
 
     execute_commands() { 
@@ -41,6 +44,28 @@ module.exports = class Database {
         }
     }
 
+    overwrite_env_file(dotenv_filepath) {
+        const dotenv_path = dotenv_filepath; 
+
+        fs.readFile(`${dotenv_path}`, 'utf8', (error, data) => {
+            if (error) {
+                console.log(error);
+
+            }
+            else {
+                let env_replacement = data.replace(`${this.database_name}`, this.new_database_name);
+                console.log(`Old Database: ${this.database_name}`);
+                console.log(`New Database: ${this.new_database_name}`);
+
+                fs.writeFile(`${dotenv_path}`, `${env_replacement}`, 'utf8', (error) => {
+                    if (error) {
+                        console.log(error);
+                    }
+                });
+            }
+        });
+    }
+
     prompt_user(query) {
         inquirer.prompt([
             query
@@ -55,15 +80,16 @@ module.exports = class Database {
         });
     }
 
-    read_user_lines() {
+    read_user_lines() { 
         const read = read_user_line.createInterface({
             input: process.stdin,
             output: process.stdout
         });
 
         read.question("Enter database name to create, ", (database_name) => {
-            this.database_name = database_name;
-            this.create_database(this.database_name);
+            this.new_database_name = database_name;
+            this.create_database(this.new_database_name); 
+            this.overwrite_env_file(this.dotenv_filepath);
 
             read.close();
         })
@@ -91,8 +117,8 @@ module.exports = class Database {
                 return;
             }
             else {
-                message = `Database created`;
-                console.log(`${messages}`); 
+                message = `Database created successfully!`;
+                console.log(`${message}`); 
                 
                 if (args.includes('push')) { 
                     migrate_database_tables(); 
@@ -101,9 +127,7 @@ module.exports = class Database {
         }); 
     }
 
-    database_connection(database_name) {
-        this.database_name = database_name;
-
+    database_connection() { 
         const connection = mysql.createConnection({
             'host': this.database_host,
             'user': this.database_username,

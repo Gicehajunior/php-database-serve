@@ -50,7 +50,7 @@ const run_application = () => {
 
     const database_tables_path = process.env.DB_TABLES_PATH;
     
-    const app = new application(database_host, database_name, database_username, database_password, database_tables_path, process.argv.slice(2));
+    const app = new application(dotenv_filepath, database_host, database_name, database_username, database_password, database_tables_path, process.argv.slice(2));
     app.execute_commands();
 }
 
