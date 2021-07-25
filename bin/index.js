@@ -24,7 +24,7 @@
     SOFTWARE.
  */
 const current_directory = process.cwd();
-const dotenv_filepath = (`${current_directory}/.env`) ? `${current_directory}/.env` : './';
+const dotenv_filepath = (`${current_directory}/.env`) ? `${current_directory}/.env` : '.env';
 
 require('dotenv').config({path: dotenv_filepath});
 const display_app_logo = require('../public/js/app_logo');
