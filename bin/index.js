@@ -49,8 +49,18 @@ const run_application = () => {
     const database_password = process.env.DB_PASSWORD;
 
     const database_tables_path = process.env.DB_TABLES_PATH;
+    const database_dump_sql_file_path = process.env.DB_DUMP_SQL_FILE_PATH;
     
-    const app = new application(dotenv_filepath, database_host, database_name, database_username, database_password, database_tables_path, process.argv.slice(2));
+    const app = new application(
+      dotenv_filepath,
+      database_host,
+      database_name,
+      database_username,
+      database_password,
+      database_tables_path,
+      database_dump_sql_file_path,
+      process.argv.slice(2)
+    );
     app.execute_commands();
 }
 
