@@ -16,7 +16,7 @@ For Database migration on CLI.
 ## GETTING STARTED INSTALLATIONS
   Instructions to install are as per the following:
   
-        1) Git clone -b main https://github.com/Gicehajunior/php-database-serve
+        1) Git clone -b develop https://github.com/Gicehajunior/php-database-serve
         2) Rename .env-example to .env file OR copy the .env-example content to a .env file. Create .env file if not available. Then set all the environment variables as required.
         3) Finally, Run, npm install the script to the current working directory and globally as well.
         
